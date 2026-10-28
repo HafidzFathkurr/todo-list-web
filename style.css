@@ -1,0 +1,243 @@
+/* ===== 1. PENGATURAN DASAR ===== */
+
+/* Reset: hapus jarak bawaan browser agar ukuran lebih mudah diatur */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Warna disimpan di sini agar mudah diganti kapan saja */
+:root {
+  --color-background: #f1f5f9;
+  --color-card: #ffffff;
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-text: #1e293b;
+  --color-text-light: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+}
+
+/* Tampilan halaman secara keseluruhan */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+
+/* ===== 2. KARTU UTAMA APLIKASI ===== */
+
+.app {
+  background-color: var(--color-card);
+  width: 100%;
+  max-width: 520px;
+  height: fit-content;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+
+/* ===== 3. FORM TAMBAH TUGAS ===== */
+
+.add-task {
+  display: flex;
+  gap: 8px;
+}
+
+#task-input {
+  flex: 1; /* input mengisi sisa ruang */
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* Saat input diklik, border berubah warna */
+#task-input:focus {
+  border-color: var(--color-primary);
+}
+
+#add-button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#add-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Pesan error di bawah input */
+.error-message {
+  color: var(--color-danger);
+  font-size: 0.9rem;
+  margin-top: 8px;
+  min-height: 1.2em; /* menjaga tinggi agar layout tidak melompat */
+}
+
+
+/* ===== 4. JUMLAH TUGAS DAN FILTER ===== */
+
+.task-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* turun ke baris baru jika layar sempit */
+  gap: 12px;
+  margin: 20px 0 12px;
+}
+
+#task-counter {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+.filters {
+  display: flex;
+  gap: 6px;
+}
+
+.filter-button {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-button:hover {
+  border-color: var(--color-primary);
+}
+
+/* Gaya untuk filter yang sedang dipilih (kelas "active" ditambahkan di Tahap 5) */
+.filter-button.active {
+  color: white;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+
+/* ===== 5. DAFTAR TUGAS ===== */
+
+#task-list {
+  list-style: none; /* hilangkan titik-titik bawaan daftar */
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background-color: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  transition: background-color 0.2s;
+}
+
+.task-item:hover {
+  background-color: #f1f5f9;
+}
+
+.task-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.task-text {
+  flex: 1; /* teks mengisi ruang di tengah */
+  word-break: break-word; /* teks panjang tidak keluar kartu */
+}
+
+/* Gaya tugas yang sudah selesai: teks dicoret dan pudar */
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--color-text-light);
+}
+
+
+/* ===== 6. TOMBOL EDIT DAN HAPUS ===== */
+
+.edit-button,
+.delete-button {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.edit-button {
+  color: var(--color-primary-dark);
+  background-color: #e0e7ff;
+}
+
+.delete-button {
+  color: var(--color-danger);
+  background-color: var(--color-danger-light);
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  opacity: 0.75;
+}
+
+
+/* ===== 7. PESAN KOSONG ===== */
+
+.empty-message {
+  text-align: center;
+  color: var(--color-text-light);
+  padding: 24px 0 8px;
+}
+
+
+/* ===== 8. RESPONSIF UNTUK SMARTPHONE ===== */
+
+/* Aturan di dalam sini hanya berlaku jika lebar layar 480px atau kurang */
+@media (max-width: 480px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .app {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .task-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
