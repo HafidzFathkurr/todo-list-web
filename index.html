@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <!-- Pengaturan dasar halaman -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My To-Do List</title>
+
+    <!-- Menghubungkan file CSS (desain) -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Wadah utama seluruh aplikasi -->
+    <main class="app">
+      <!-- Judul aplikasi -->
+      <h1>My To-Do List</h1>
+
+      <!-- Bagian untuk menambah tugas baru -->
+      <section class="add-task">
+        <input type="text" id="task-input" placeholder="Tulis tugas baru..." />
+        <button id="add-button">Tambah</button>
+      </section>
+
+      <!-- Pesan error (misalnya jika input kosong), nanti diisi lewat JavaScript -->
+      <p id="error-message" class="error-message"></p>
+
+      <!-- Bagian informasi jumlah tugas dan tombol filter -->
+      <section class="task-info">
+        <p id="task-counter">0 tugas belum selesai</p>
+
+        <div class="filters">
+          <button class="filter-button" data-filter="all">Semua</button>
+          <button class="filter-button" data-filter="active">
+            Belum Selesai
+          </button>
+          <button class="filter-button" data-filter="completed">Selesai</button>
+        </div>
+      </section>
+
+      <!-- Daftar tugas. Nanti item-itemnya dibuat oleh JavaScript -->
+      <ul id="task-list">
+        <!-- CONTOH SEMENTARA (akan dihapus nanti): -->
+        <li class="task-item">
+          <input type="checkbox" />
+          <span class="task-text">Contoh tugas</span>
+          <button class="edit-button">Edit</button>
+          <button class="delete-button">Hapus</button>
+        </li>
+      </ul>
+
+      <!-- Pesan jika daftar tugas kosong -->
+      <p id="empty-message" class="empty-message">
+        Belum ada tugas. Yuk tambahkan satu!
+      </p>
+    </main>
+
+    <!-- Menghubungkan file JavaScript (fungsi). Diletakkan paling bawah -->
+    <script src="script.js"></script>
+  </body>
+</html>
