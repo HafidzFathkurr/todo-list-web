@@ -51,6 +51,36 @@ function addTask() {
   renderTasks();
 }
 
+// ===== 3B. FUNGSI MENANDAI TUGAS SELESAI =====
+// Menerima id tugas yang checkbox-nya diklik
+function toggleTask(taskId) {
+  // Cari tugas yang id-nya cocok, lalu balik nilai completed-nya:
+  // false menjadi true, true menjadi false
+  tasks.forEach(function (task) {
+    if (task.id === taskId) {
+      task.completed = !task.completed;
+    }
+  });
+
+  // Tampilkan ulang daftar agar perubahan terlihat
+  renderTasks();
+}
+
+
+// ===== 3C. FUNGSI MENGHAPUS TUGAS =====
+// Menerima id tugas yang tombol Hapus-nya diklik
+function deleteTask(taskId) {
+  // filter() membuat array baru yang hanya berisi tugas
+  // yang id-nya BERBEDA dari tugas yang ingin dihapus.
+  // Artinya, tugas dengan id tersebut "hilang" dari array.
+  tasks = tasks.filter(function (task) {
+    return task.id !== taskId;
+  });
+
+  // Tampilkan ulang daftar
+  renderTasks();
+}
+
 
 // ===== 4. FUNGSI MENAMPILKAN TUGAS =====
 function renderTasks() {
@@ -63,10 +93,21 @@ function renderTasks() {
     const listItem = document.createElement("li");
     listItem.className = "task-item";
 
+    // Jika tugas sudah selesai, tambahkan kelas "completed"
+    // agar teksnya tercoret (gaya dari style.css)
+    if (task.completed === true) {
+      listItem.classList.add("completed");
+    }
+
     // Checkbox (belum berfungsi, akan dibuat di Tahap 4)
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = task.completed;
+
+    // Saat checkbox diklik, jalankan toggleTask untuk tugas ini
+    checkbox.addEventListener("change", function () {
+      toggleTask(task.id);
+    });
 
     // Teks tugas
     const taskTextElement = document.createElement("span");
@@ -82,6 +123,11 @@ function renderTasks() {
     const deleteButton = document.createElement("button");
     deleteButton.className = "delete-button";
     deleteButton.textContent = "Hapus";
+
+    // Saat tombol Hapus diklik, jalankan deleteTask untuk tugas ini
+    deleteButton.addEventListener("click", function () {
+      deleteTask(task.id);
+    });
 
     // Susun semuanya ke dalam <li>
     listItem.appendChild(checkbox);
