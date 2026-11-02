@@ -11,12 +11,42 @@ const filterButtons = document.querySelectorAll(".filter-button");
 
 
 // ===== 2. DATA APLIKASI =====
+// Nama kunci untuk menyimpan data di LocalStorage
+const STORAGE_KEY = "todoListTasks";
+
 // Array yang menyimpan semua tugas.
 // Setiap tugas: { id, text, completed }
-let tasks = [];
+// Saat halaman dibuka, isinya dimuat dari LocalStorage (lihat fungsi loadTasks)
+let tasks = loadTasks();
 
 // Filter yang sedang dipilih: "all", "active", atau "completed"
 let currentFilter = "all";
+
+// ===== 2B. FUNGSI LOCALSTORAGE (BARU) =====
+
+// Menyimpan array tasks ke LocalStorage
+function saveTasks() {
+  // Ubah array menjadi teks JSON, lalu simpan
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+}
+
+// Membaca tugas dari LocalStorage
+function loadTasks() {
+  const savedData = localStorage.getItem(STORAGE_KEY);
+
+  // Jika belum ada data tersimpan, mulai dengan daftar kosong
+  if (savedData === null) {
+    return [];
+  }
+
+  // try...catch: jika data rusak, aplikasi tidak error dan
+  // cukup mulai dari daftar kosong
+  try {
+    return JSON.parse(savedData);
+  } catch (error) {
+    return [];
+  }
+}
 
 
 // ===== 3. FUNGSI MENAMBAH TUGAS =====
@@ -38,6 +68,7 @@ function addTask() {
   };
 
   tasks.push(newTask);
+  saveTasks();
 
   taskInput.value = "";
   taskInput.focus();
@@ -54,6 +85,7 @@ function toggleTask(taskId) {
     }
   });
 
+  saveTasks();
   renderTasks();
 }
 
@@ -64,6 +96,7 @@ function deleteTask(taskId) {
     return task.id !== taskId;
   });
 
+  saveTasks();
   renderTasks();
 }
 
@@ -93,6 +126,7 @@ function editTask(taskId) {
 
   // Simpan teks baru, lalu tampilkan ulang daftar
   taskToEdit.text = trimmedText;
+  saveTasks();
   renderTasks();
 }
 
