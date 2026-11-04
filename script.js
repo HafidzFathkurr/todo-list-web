@@ -279,6 +279,11 @@ taskInput.addEventListener("keydown", function (event) {
   }
 });
 
+// Hapus pesan error begitu pengguna mulai mengetik
+taskInput.addEventListener("input", function () {
+  errorMessage.textContent = "";
+});
+
 // Pasang aksi klik pada setiap tombol filter (BARU)
 filterButtons.forEach(function (button) {
   button.addEventListener("click", function () {
