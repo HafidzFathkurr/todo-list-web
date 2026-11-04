@@ -34,15 +34,19 @@ function saveTasks() {
 function loadTasks() {
   const savedData = localStorage.getItem(STORAGE_KEY);
 
-  // Jika belum ada data tersimpan, mulai dengan daftar kosong
   if (savedData === null) {
     return [];
   }
 
-  // try...catch: jika data rusak, aplikasi tidak error dan
-  // cukup mulai dari daftar kosong
   try {
-    return JSON.parse(savedData);
+    const parsedData = JSON.parse(savedData);
+
+    // Pastikan hasilnya benar-benar array.
+    // Jika bukan (misalnya angka atau teks), abaikan dan mulai dari kosong.
+    if (Array.isArray(parsedData)) {
+      return parsedData;
+    }
+    return [];
   } catch (error) {
     return [];
   }
