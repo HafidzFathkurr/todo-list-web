@@ -26,8 +26,13 @@ let currentFilter = "all";
 
 // Menyimpan array tasks ke LocalStorage
 function saveTasks() {
-  // Ubah array menjadi teks JSON, lalu simpan
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  } catch (error) {
+    // Jika gagal menyimpan, aplikasi tetap berjalan normal
+    // hanya saja data tidak akan bertahan setelah refresh
+    console.error("Gagal menyimpan data:", error);
+  }
 }
 
 // Membaca tugas dari LocalStorage
