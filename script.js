@@ -125,7 +125,8 @@ function editTask(taskId) {
     return;
   }
 
-  const trimmedText = newText.trim();
+  // .slice(0, 100) memotong teks agar maksimal 100 karakter
+  const trimmedText = newText.trim().slice(0, 100);
 
   // Validasi: hasil edit tidak boleh kosong
   if (trimmedText === "") {
