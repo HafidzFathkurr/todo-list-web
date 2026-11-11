@@ -183,6 +183,7 @@ function renderTasks() {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = task.completed;
+    checkbox.setAttribute("aria-label", "Tandai selesai: " + task.text);
     checkbox.addEventListener("change", function () {
       toggleTask(task.id);
     });
@@ -196,6 +197,7 @@ function renderTasks() {
     const editButton = document.createElement("button");
     editButton.className = "edit-button";
     editButton.textContent = "Edit";
+    editButton.setAttribute("aria-label", "Edit tugas: " + task.text);
     editButton.addEventListener("click", function () {
       editTask(task.id);
     });
@@ -204,6 +206,7 @@ function renderTasks() {
     const deleteButton = document.createElement("button");
     deleteButton.className = "delete-button";
     deleteButton.textContent = "Hapus";
+    deleteButton.setAttribute("aria-label", "Hapus tugas: " + task.text);
     deleteButton.addEventListener("click", function () {
       deleteTask(task.id);
     });

@@ -185,6 +185,13 @@ h1 {
 
 /* ===== 6. TOMBOL EDIT DAN HAPUS ===== */
 
+/* Garis penanda saat elemen dipilih dengan keyboard (tombol Tab) */
+button:focus-visible,
+input[type="checkbox"]:focus-visible {
+  outline: 3px solid #c7d2fe;
+  outline-offset: 2px;
+}
+
 .edit-button,
 .delete-button {
   padding: 6px 10px;
