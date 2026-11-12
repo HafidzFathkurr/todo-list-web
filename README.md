@@ -2,7 +2,7 @@
 
 Aplikasi To-Do List sederhana yang dibuat dengan HTML, CSS, dan JavaScript murni (tanpa framework). Proyek ini dibuat untuk belajar pemrograman web dan sebagai bagian dari portofolio GitHub.
 
-🔗 **Demo:** https://github.com/HafidzFathkurr/todo-list-web
+🔗 **Demo:** https://HafidzFathkurr.github.io/todo-list-web/
 
 ## Screenshot
 
